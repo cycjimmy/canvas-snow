@@ -115,13 +115,13 @@ var CanvasSnow = function () {
   }
 
   CanvasSnow.prototype.init = function init() {
+    if (!this.canvas) {
+      this._initCanvas();
+    }
+
     if (!this.snowList) {
       this.snowList = new __WEBPACK_IMPORTED_MODULE_2__SnowList__["a" /* default */]();
       this._newSnow();
-    }
-
-    if (!this.canvas) {
-      this._initCanvas();
     }
 
     return this;
