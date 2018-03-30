@@ -1,4 +1,4 @@
-import CanvasSnow from '../dist/CanvasSnow';
+import CanvasSnow from '../build/CanvasSnow';
 
 describe('ui spec', () => {
   const
