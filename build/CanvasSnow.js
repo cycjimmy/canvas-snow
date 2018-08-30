@@ -1,3 +1,8 @@
+/*!
+ * canvas-snow v0.1.1
+ * Homepage: https://github.com/cycdpo/canvas-snow#readme
+ * Released under the MIT License.
+ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -46,17 +51,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -85,67 +105,63 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CanvasSnow; });
 /* harmony import */ var awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _Snow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _SnowList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
 
-
-
-var CanvasSnow = function () {
+var CanvasSnow =
+/*#__PURE__*/
+function () {
   function CanvasSnow(_ref) {
     var context = _ref.context,
         _ref$width = _ref.width,
-        width = _ref$width === undefined ? '100%' : _ref$width,
+        width = _ref$width === void 0 ? '100%' : _ref$width,
         _ref$height = _ref.height,
-        height = _ref$height === undefined ? '100%' : _ref$height,
+        height = _ref$height === void 0 ? '100%' : _ref$height,
         cell = _ref.cell;
-
-    _classCallCheck(this, CanvasSnow);
-
     this.context = Object(awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__["default"])(context) ? document.querySelector(context) : context;
     this.width = _getHorizontalDistance(this.context, width);
     this.height = _getVerticalDistance(this.context, height);
     this.cell = cell;
     this.state = 'stop';
-
     this.snowList = null;
-
     this.canvas = null;
     this.cxt = null;
-
     this.interval = null;
   }
 
-  CanvasSnow.prototype.init = function init() {
+  var _proto = CanvasSnow.prototype;
+
+  _proto.init = function init() {
     if (!this.canvas) {
       this._initCanvas();
     }
 
     if (!this.snowList) {
       this.snowList = new _SnowList__WEBPACK_IMPORTED_MODULE_2__["default"]();
+
       this._newSnow();
     }
 
     return this;
   };
 
-  CanvasSnow.prototype._initCanvas = function _initCanvas() {
+  _proto._initCanvas = function _initCanvas() {
     this.canvas = document.createElement('canvas');
     this.context.appendChild(this.canvas);
     this.canvas.height = this.height;
     this.canvas.width = this.width;
-
     this.cxt = this.canvas.getContext('2d');
   };
 
   /**
    * animation start
    */
-  CanvasSnow.prototype.start = function start() {
+  _proto.start = function start() {
     var _this = this;
 
     if (!this.snowList) {
@@ -155,7 +171,9 @@ var CanvasSnow = function () {
     this.state = 'play';
     this.interval = setInterval(function () {
       _this.cxt.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
+
       _this.snowList.update();
+
       _this.snowList.draw(_this.cxt);
     }, 13);
   };
@@ -163,7 +181,7 @@ var CanvasSnow = function () {
   /**
    * animation stop
    */
-  CanvasSnow.prototype.stop = function stop() {
+  _proto.stop = function stop() {
     this.state = 'stop';
     clearInterval(this.interval);
     this.interval = null;
@@ -173,12 +191,12 @@ var CanvasSnow = function () {
   /**
    *
    */
-  CanvasSnow.prototype.clear = function clear() {
+  _proto.clear = function clear() {
     this.stop();
     this.snowList = null;
   };
 
-  CanvasSnow.prototype._newSnow = function _newSnow() {
+  _proto._newSnow = function _newSnow() {
     for (var i = 0; i < this.cell; i++) {
       var randomX = this._getRandom('x'),
           randomY = this._getRandom('y'),
@@ -189,6 +207,7 @@ var CanvasSnow = function () {
         x: randomFnx,
         y: randomFny
       }, this.width, this.height);
+
       snow.draw(this.cxt);
       this.snowList.push(snow);
     }
@@ -199,53 +218,61 @@ var CanvasSnow = function () {
    * @param  {string} option x|y|fnx|fny
    * @return {int|Function}
    */
-  CanvasSnow.prototype._getRandom = function _getRandom(option) {
-    var ret = void 0,
-        random = void 0;
+  _proto._getRandom = function _getRandom(option) {
+    var ret, random;
+
     switch (option) {
       case 'x':
         ret = Math.random() * this.width;
         break;
+
       case 'y':
         ret = (Math.random() - 1) * this.height;
         break;
+
       case 'r':
         ret = 2 + Math.random() * 4;
         break;
+
       case 'fnx':
         random = 27 + Math.random() * 100;
+
         ret = function ret(x, y) {
           return x + 0.5 * Math.sin(y / random);
         };
+
         break;
 
       case 'fny':
         random = 0.4 + Math.random() * 1.4;
+
         ret = function ret(x, y) {
           return y + random;
         };
+
         break;
     }
+
     return ret;
   };
 
   return CanvasSnow;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (CanvasSnow);
-;
 
-// private
+; // private
+
 var _handleDistanceNum = function _handleDistanceNum(num, totalDistance) {
   if (num.toString().indexOf('%') !== -1) {
     return num.split('%')[0] / 100 * totalDistance;
   }
+
   return Object(awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__["default"])(num) ? Number(num) : num;
 },
     _getTotalDistance = function _getTotalDistance(_ref2) {
   var el = _ref2.el,
       _ref2$tip = _ref2.tip,
-      tip = _ref2$tip === undefined ? 'horizontal' : _ref2$tip;
+      tip = _ref2$tip === void 0 ? 'horizontal' : _ref2$tip;
 
   switch (tip) {
     case 'horizontal':
@@ -292,12 +319,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _class = function () {
-  function _class(x, y, radius, fn, canvasW, canvasH) {
-    _classCallCheck(this, _class);
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(x, y, radius, fn, canvasW, canvasH) {
     this.x = x;
     this.y = y;
     this.r = radius;
@@ -306,7 +332,9 @@ var _class = function () {
     this.canvasH = canvasH;
   }
 
-  _class.prototype.update = function update() {
+  var _proto = _default.prototype;
+
+  _proto.update = function update() {
     if (this.y > this.canvasH) {
       this.x = Math.random() * this.canvasW;
       this.y = 0;
@@ -316,7 +344,7 @@ var _class = function () {
     }
   };
 
-  _class.prototype.draw = function draw(cxt) {
+  _proto.draw = function draw(cxt) {
     var grd = cxt.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
     grd.addColorStop(0, 'rgba(255, 255, 255, ' + this.r / 6 * 1 + ')');
     grd.addColorStop(.5, 'rgba(255, 255, 255, ' + this.r / 6 * .5 + ')');
@@ -325,10 +353,10 @@ var _class = function () {
     cxt.fillRect(this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
   };
 
-  return _class;
+  return _default;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (_class);
+
 ;
 
 /***/ }),
@@ -337,43 +365,44 @@ var _class = function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _class = function () {
-  function _class() {
-    _classCallCheck(this, _class);
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+var _default =
+/*#__PURE__*/
+function () {
+  function _default() {
     this.list = [];
   }
 
-  _class.prototype.update = function update() {
+  var _proto = _default.prototype;
+
+  _proto.update = function update() {
     for (var i = 0, len = this.size(); i < len; i++) {
       this.list[i].update();
     }
   };
 
-  _class.prototype.push = function push(snow) {
+  _proto.push = function push(snow) {
     this.list.push(snow);
   };
 
-  _class.prototype.draw = function draw(cxt) {
+  _proto.draw = function draw(cxt) {
     for (var i = 0, len = this.size(); i < len; i++) {
       this.list[i].draw(cxt);
     }
   };
 
-  _class.prototype.get = function get(index) {
+  _proto.get = function get(index) {
     return this.list[index];
   };
 
-  _class.prototype.size = function size() {
+  _proto.size = function size() {
     return this.list.length;
   };
 
-  return _class;
+  return _default;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (_class);
+
 ;
 
 /***/ })
