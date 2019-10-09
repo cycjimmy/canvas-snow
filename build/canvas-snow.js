@@ -1,5 +1,5 @@
 /*!
- * @cycjimmy/canvas-snow v1.0.0
+ * @cycjimmy/canvas-snow v1.0.2
  * Homepage: https://github.com/cycjimmy/canvas-snow#readme
  * Released under the MIT License.
  */
@@ -106,7 +106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CanvasSnow; });
-/* harmony import */ var awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _cycjimmy_awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _Snow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _SnowList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
 
@@ -123,7 +123,7 @@ function () {
         _ref$height = _ref.height,
         height = _ref$height === void 0 ? '100%' : _ref$height,
         cell = _ref.cell;
-    this.context = Object(awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__["default"])(context) ? document.querySelector(context) : context;
+    this.context = Object(_cycjimmy_awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__["default"])(context) ? document.querySelector(context) : context;
     this.width = _getHorizontalDistance(this.context, width);
     this.height = _getVerticalDistance(this.context, height);
     this.cell = cell;
@@ -267,7 +267,7 @@ var _handleDistanceNum = function _handleDistanceNum(num, totalDistance) {
     return num.split('%')[0] / 100 * totalDistance;
   }
 
-  return Object(awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__["default"])(num) ? Number(num) : num;
+  return Object(_cycjimmy_awesome_js_funcs_judgeBasic_isString__WEBPACK_IMPORTED_MODULE_0__["default"])(num) ? Number(num) : num;
 },
     _getTotalDistance = function _getTotalDistance(_ref2) {
   var el = _ref2.el,
