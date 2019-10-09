@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/canvas-snow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates snow in canvas.",
   "main": "build/canvas-snow.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/cycjimmy/canvas-snow#readme",
   "dependencies": {
-    "awesome-js-funcs": "^0.1.6"
+    "@cycjimmy/awesome-js-funcs": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.3",

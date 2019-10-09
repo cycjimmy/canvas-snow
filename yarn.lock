@@ -665,6 +665,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@cycjimmy/awesome-js-funcs@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@cycjimmy/awesome-js-funcs/-/awesome-js-funcs-1.0.0.tgz#f265e3e3d7a6725eb01e305033c666b6510472a6"
+  integrity sha512-BzY8K0xLaIEtXU8pC2G0+T3K5ugTnIZO0QoNozjtJ74ZaKEQLWx2f+eGpToLpikfoe+uFLvFseFFC23OY/rvPw==
+
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -1483,11 +1488,6 @@ autoprefixer@^9.6.4:
     num2fraction "^1.2.2"
     postcss "^7.0.18"
     postcss-value-parser "^4.0.2"
-
-awesome-js-funcs@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/awesome-js-funcs/-/awesome-js-funcs-0.1.6.tgz#b5eb72500d320f4f48faebdcf2e9a9ab1b18efda"
-  integrity sha512-h9BRq8eBXk1zc8XVC3gl5MtQ9xv1qKMgzO6HTZtfw8/aUYFmZRBoZ5trqVNYjoBt+Ls0l9ZL9vOsb9+jI/T/hw==
 
 aws-sign2@~0.7.0:
   version "0.7.0"

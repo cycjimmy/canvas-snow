@@ -1,4 +1,4 @@
-import isString from 'awesome-js-funcs/judgeBasic/isString';
+import isString from '@cycjimmy/awesome-js-funcs/judgeBasic/isString';
 
 import Snow from './Snow';
 import SnowList from './SnowList';
