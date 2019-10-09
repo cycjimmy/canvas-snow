@@ -1,4 +1,4 @@
-var
+const
   path = require('path')
   , webpack = require('webpack')
   , packageJson = require('./package.json')
@@ -7,16 +7,16 @@ var
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-  , CleanWebpackPlugin = require('clean-webpack-plugin')
+  , {CleanWebpackPlugin} = require('clean-webpack-plugin')
 ;
 
-var
+const
   IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
   , IS_PRODUCTION = process.env.NODE_ENV === 'production'
   , cssIdentifier = IS_PRODUCTION ? '[hash:base64:10]' : '[path][name]__[local]'
 ;
 
-var config = {
+const config = {
   mode: 'none',
   entry: path.resolve('src', 'index.js'),
 
@@ -25,8 +25,8 @@ var config = {
       ? path.resolve('dist')
       : path.resolve('build'),
     filename: IS_PRODUCTION
-      ? 'CanvasSnow.min.js'
-      : 'CanvasSnow.js',
+      ? 'canvas-snow.min.js'
+      : 'canvas-snow.js',
     library: 'CanvasSnow',
     libraryTarget: 'umd',
     libraryExport: 'default'
@@ -46,21 +46,12 @@ var config = {
       {
         test: /\.js$/,
         type: 'javascript/auto',
-        include: [
-          path.resolve('src'),
-        ],
-        exclude: [
-          path.resolve('node_modules'),
-        ],
         loader: 'babel-loader'
       },
 
       // Style
       {
         test: /\.scss$/,
-        exclude: [
-          path.resolve('node_modules'),
-        ],
         use: [
           {
             loader: 'style-loader'
@@ -69,8 +60,17 @@ var config = {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              modules: true,
-              localIdentName: cssIdentifier,
+              modules: {
+                localIdentName: cssIdentifier,
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.resolve('postcss.config.js'),
+              },
             },
           },
           {
@@ -118,8 +118,7 @@ if (IS_DEVELOPMENT) {
       template: path.resolve('./static', 'view', 'index.pug'),
     }),
 
-    new CleanWebpackPlugin(['dist'], {
-      root: path.resolve('./'),
+    new CleanWebpackPlugin({
       verbose: true,
       dry: false
     }),
@@ -141,11 +140,10 @@ if (IS_PRODUCTION) {
   config.plugins.push(
     new webpack.HashedModuleIdsPlugin(),
 
-    new CleanWebpackPlugin(['build'], {
-      root: path.resolve('./'),
+    new CleanWebpackPlugin({
       verbose: true,
       dry: false
-    })
+    }),
   );
 
   config.optimization = {
@@ -161,7 +159,6 @@ if (IS_PRODUCTION) {
             beautify: false
           },
           compress: {
-            warnings: false,
             drop_debugger: true,
             drop_console: true,
             collapse_vars: true,

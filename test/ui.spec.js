@@ -1,4 +1,4 @@
-import CanvasSnow from '../build/CanvasSnow';
+import CanvasSnow from '../build/canvas-snow.min';
 
 describe('ui spec', () => {
   const
@@ -8,7 +8,7 @@ describe('ui spec', () => {
   snowWrapper.style.width = '360px';
   snowWrapper.style.height = '640px';
 
-  let canvasSnow = new CanvasSnow({
+  const canvasSnow = new CanvasSnow({
     context: snowWrapper,
     cell: 50
   });

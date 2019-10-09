@@ -35,11 +35,11 @@ $ yarn add canvas-snow
   ```javascript
   import CanvasSnow from 'canvas-snow';
   # OR
-  let CanvasSnow = require('canvas-snow');
+  const CanvasSnow = require('canvas-snow');
   ```
 
   ```javascript
-  let canvasSnow = new CanvasSnow({
+  const canvasSnow = new CanvasSnow({
     [...options]
   }).init();
   canvasSnow.start();
@@ -74,6 +74,6 @@ $ yarn add canvas-snow
 ## CDN
 To use via a CDN include this in your html:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/canvas-snow@0/build/CanvasSnow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-snow@0/build/canvas-snow.min.js"></script>
 ```
 
