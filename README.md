@@ -8,34 +8,34 @@
 [![jsdelivr][jsdelivr-image]][jsdelivr-url]
 [![npm license][license-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/canvas-snow.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/canvas-snow
-[travis-image]: https://img.shields.io/travis/cycdpo/canvas-snow.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cycdpo/canvas-snow
-[david-image]: https://img.shields.io/david/cycdpo/canvas-snow.svg?style=flat-square
-[david-url]: https://david-dm.org/cycdpo/canvas-snow
-[david-dev-image]: https://david-dm.org/cycdpo/canvas-snow/dev-status.svg?style=flat-square
-[david-dev-url]: https://david-dm.org/cycdpo/canvas-snow?type=dev
-[download-image]: https://img.shields.io/npm/dm/canvas-snow.svg?style=flat-square
-[download-url]: https://npmjs.org/package/canvas-snow
-[jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/canvas-snow/badge
-[jsdelivr-url]: https://www.jsdelivr.com/package/npm/canvas-snow
-[license-image]: https://img.shields.io/npm/l/canvas-snow.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/@cycjimmy/canvas-snow.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@cycjimmy/canvas-snow
+[travis-image]: https://img.shields.io/travis/cycjimmy/canvas-snow.svg?style=flat-square
+[travis-url]: https://travis-ci.org/cycjimmy/canvas-snow
+[david-image]: https://img.shields.io/david/cycjimmy/canvas-snow.svg?style=flat-square
+[david-url]: https://david-dm.org/cycjimmy/canvas-snow
+[david-dev-image]: https://david-dm.org/cycjimmy/canvas-snow/dev-status.svg?style=flat-square
+[david-dev-url]: https://david-dm.org/cycjimmy/canvas-snow?type=dev
+[download-image]: https://img.shields.io/npm/dm/@cycjimmy/canvas-snow.svg?style=flat-square
+[download-url]: https://npmjs.org/package/@cycjimmy/canvas-snow
+[jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/@cycjimmy/canvas-snow/badge
+[jsdelivr-url]: https://www.jsdelivr.com/package/npm/@cycjimmy/canvas-snow
+[license-image]: https://img.shields.io/npm/l/@cycjimmy/canvas-snow.svg?style=flat-square
 
-Generates snow in canvas. ([Releases](https://github.com/cycdpo/canvas-snow/releases) | [Demo](https://cycdpo.github.io/canvas-snow/))
+Generates snow in canvas. ([Releases](https://github.com/cycjimmy/canvas-snow/releases) | [Demo](https://cycjimmy.github.io/canvas-snow/))
 
 ## Install
 ```shell
-$ npm install canvas-snow --save
+$ npm install @cycjimmy/canvas-snow --save
 # or
-$ yarn add canvas-snow
+$ yarn add @cycjimmy/canvas-snow
 ```
 
 ## Use
   ```javascript
-  import CanvasSnow from 'canvas-snow';
+  import CanvasSnow from '@cycjimmy/canvas-snow';
   # OR
-  const CanvasSnow = require('canvas-snow');
+  const CanvasSnow = require('@cycjimmy/canvas-snow');
   ```
 
   ```javascript
@@ -60,7 +60,7 @@ $ yarn add canvas-snow
 ### Use in browser
 ```html
 <div id="snowWrapper"></div>
-<script src="CanvasSnow.min.js"></script>
+<script src="canvas-snow.min.js"></script>
 <script>
   var canvasSnow = new CanvasSnow(source, {
     context: '#snowWrapper',
@@ -74,6 +74,6 @@ $ yarn add canvas-snow
 ## CDN
 To use via a CDN include this in your html:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/canvas-snow@0/build/canvas-snow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@cycjimmy/canvas-snow@1/build/canvas-snow.min.js"></script>
 ```
 

@@ -1,6 +1,6 @@
 {
-  "name": "canvas-snow",
-  "version": "0.2.0",
+  "name": "@cycjimmy/canvas-snow",
+  "version": "1.0.0",
   "description": "Generates snow in canvas.",
   "main": "build/canvas-snow.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cycdpo/canvas-snow.git"
+    "url": "git+https://github.com/cycjimmy/canvas-snow.git"
   },
   "keywords": [
     "canvas",
@@ -21,9 +21,9 @@
   "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cycdpo/canvas-snow/issues"
+    "url": "https://github.com/cycjimmy/canvas-snow/issues"
   },
-  "homepage": "https://github.com/cycdpo/canvas-snow#readme",
+  "homepage": "https://github.com/cycjimmy/canvas-snow#readme",
   "dependencies": {
     "awesome-js-funcs": "^0.1.6"
   },

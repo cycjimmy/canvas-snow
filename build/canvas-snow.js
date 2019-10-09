@@ -1,6 +1,6 @@
 /*!
- * canvas-snow v0.2.0
- * Homepage: https://github.com/cycdpo/canvas-snow#readme
+ * @cycjimmy/canvas-snow v1.0.0
+ * Homepage: https://github.com/cycjimmy/canvas-snow#readme
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
