@@ -26,16 +26,16 @@ Generates snow in canvas. ([Releases](https://github.com/cycdpo/canvas-snow/rele
 
 ## Install
 ```shell
-$ npm install @cycjimmy/canvas-snow --save
+$ npm install canvas-snow --save
 # or
-$ yarn add @cycjimmy/canvas-snow
+$ yarn add canvas-snow
 ```
 
 ## Use
   ```javascript
-  import CanvasSnow from '@cycjimmy/canvas-snow';
+  import CanvasSnow from 'canvas-snow';
   # OR
-  const CanvasSnow = require('@cycjimmy/canvas-snow');
+  const CanvasSnow = require('canvas-snow');
   ```
 
   ```javascript
@@ -60,7 +60,7 @@ $ yarn add @cycjimmy/canvas-snow
 ### Use in browser
 ```html
 <div id="snowWrapper"></div>
-<script src="canvas-snow.min.js"></script>
+<script src="CanvasSnow.min.js"></script>
 <script>
   var canvasSnow = new CanvasSnow(source, {
     context: '#snowWrapper',
@@ -74,6 +74,6 @@ $ yarn add @cycjimmy/canvas-snow
 ## CDN
 To use via a CDN include this in your html:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/@cycjimmy/canvas-snow@1/build/canvas-snow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-snow@0/build/canvas-snow.min.js"></script>
 ```
 
