@@ -1,5 +1,5 @@
 /*!
- * canvas-snow v0.2.0
+ * @cycjimmy/canvas-snow v1.0.0
  * Homepage: https://github.com/cycdpo/canvas-snow#readme
  * Released under the MIT License.
  */
