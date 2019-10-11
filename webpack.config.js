@@ -24,9 +24,9 @@ const config = {
     path: IS_DEVELOPMENT
       ? path.resolve('dist')
       : path.resolve('build'),
-    filename: IS_PRODUCTION
-      ? 'canvas-snow.min.js'
-      : 'canvas-snow.js',
+    filename: packageJson.name.replace(/^.+\//g, '') + (() => IS_PRODUCTION
+      ? '.min.js'
+      : '.js')(),
     library: 'CanvasSnow',
     libraryTarget: 'umd',
     libraryExport: 'default'
@@ -76,7 +76,9 @@ const config = {
           {
             loader: 'sass-loader',
             options: {
-              outputStyle: 'expanded',
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
             },
           },
         ]
@@ -100,8 +102,8 @@ const config = {
   plugins: [
     new webpack.BannerPlugin({
       banner: packageJson.name + ' v' + packageJson.version +
-      '\nHomepage: ' + packageJson.homepage +
-      '\nReleased under the ' + packageJson.license + ' License.'
+        '\nHomepage: ' + packageJson.homepage +
+        '\nReleased under the ' + packageJson.license + ' License.'
     })
   ]
 };
