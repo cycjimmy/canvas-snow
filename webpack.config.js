@@ -13,7 +13,6 @@ const
 const
   IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
   , IS_PRODUCTION = process.env.NODE_ENV === 'production'
-  , cssIdentifier = IS_PRODUCTION ? '[hash:base64:10]' : '[path][name]__[local]'
 ;
 
 const config = {
@@ -49,51 +48,9 @@ const config = {
         loader: 'babel-loader'
       },
 
-      // Style
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              modules: {
-                localIdentName: cssIdentifier,
-              },
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: path.resolve('postcss.config.js'),
-              },
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                outputStyle: 'expanded',
-              },
-            },
-          },
-        ]
-      },
-
       // Pug template
       {
         test: /\.pug$/,
-        include: [
-          path.resolve('src'),
-          path.resolve('static')
-        ],
-        exclude: [
-          path.resolve('node_modules')
-        ],
         loader: 'pug-loader'
       }
     ]
