@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/canvas-snow",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generates snow in canvas.",
   "main": "build/canvas-snow.min.js",
   "scripts": {
