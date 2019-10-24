@@ -3,7 +3,7 @@ const makeCommonConfig = require('@cycjimmy/config-lib/semanticRelease/15.x/make
 module.exports = makeCommonConfig({
   githubOptions: {
     "assets": [
-      "build/jsmpeg-player.min.js"
+      "build/canvas-snow.min.js"
     ]
   },
   exec: true,
