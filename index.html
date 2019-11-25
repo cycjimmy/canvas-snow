@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Canvas Snow Demo</title><style>* {
+  margin: 0;
+  padding: 0;
+}
+
+#snowWrapper {
+  width: 100%;
+  height: 300px;
+  background-color: #132456;
+}
+</style></head><body><div id="snowWrapper"></div><script src="canvas-snow.js"></script><script>var canvasSnow = new CanvasSnow({
+  context: '#snowWrapper',
+  cell: 30
+}).init();
+
+canvasSnow.start();</script></body></html>
