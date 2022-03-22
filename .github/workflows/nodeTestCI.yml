@@ -1,10 +1,11 @@
-name: Node Test CI
+name: Test CI
 on:
   push:
 
   pull_request:
     branches:
       - master
+      - main
 
   schedule:
     - cron: 0 2 * * 0
