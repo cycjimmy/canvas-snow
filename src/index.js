@@ -2,67 +2,10 @@ import isString from '@cycjimmy/awesome-js-funcs/esm/judgeBasic/isString';
 
 import Snow from './Snow';
 import SnowList from './SnowList';
-
-/**
- * _handleDistanceNum
- * @param num
- * @param totalDistance
- * @returns {number|*|number}
- * @private
- */
-const _handleDistanceNum = (num, totalDistance) => {
-  if (num.toString().indexOf('%') !== -1) {
-    return (num.split('%')[0] / 100) * totalDistance;
-  }
-  return isString(num) ? Number(num) : num;
-};
-
-/**
- * _getTotalDistance
- * @param el
- * @param tip
- * @returns {number|DOMRect}
- * @private
- */
-const _getTotalDistance = ({
-  el,
-  tip = 'horizontal',
-}) => {
-  switch (tip) {
-    case 'horizontal':
-      return el.getBoundingClientRect().width;
-
-    case 'vertical':
-      return el.getBoundingClientRect().height;
-
-    default:
-      return el.getBoundingClientRect();
-  }
-};
-
-/**
- * _getVerticalDistance
- * @param el
- * @param num
- * @returns {number|*}
- * @private
- */
-const _getVerticalDistance = (el, num) => _handleDistanceNum(num, _getTotalDistance({
-  el,
-  tip: 'vertical',
-}));
-
-/**
- * _getHorizontalDistance
- * @param el
- * @param num
- * @returns {number|*}
- * @private
- */
-const _getHorizontalDistance = (el, num) => _handleDistanceNum(num, _getTotalDistance({
-  el,
-  tip: 'horizontal',
-}));
+import {
+  getVerticalDistance,
+  getHorizontalDistance,
+} from './tools';
 
 export default class {
   constructor({
@@ -74,8 +17,8 @@ export default class {
     this.context = isString(context)
       ? document.querySelector(context)
       : context;
-    this.width = _getHorizontalDistance(this.context, width);
-    this.height = _getVerticalDistance(this.context, height);
+    this.width = getHorizontalDistance(this.context, width);
+    this.height = getVerticalDistance(this.context, height);
     this.cell = cell;
     this.state = 'stop';
 
@@ -145,8 +88,7 @@ export default class {
 
   _newSnow() {
     for (let i = 0; i < this.cell; i += 1) {
-      const
-        randomX = this._getRandom('x');
+      const randomX = this._getRandom('x');
       const randomY = this._getRandom('y');
       const randomR = this._getRandom('r');
       const randomFnx = this._getRandom('fnx');
@@ -167,8 +109,7 @@ export default class {
    */
   _getRandom(option) {
     let ret;
-    let
-      random;
+    let random;
     switch (option) {
       case 'x':
         ret = Math.random() * this.width;

@@ -4,5 +4,6 @@ export default {
       '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
   },
+  setupFiles: ['jest-canvas-mock'],
   testEnvironment: 'jsdom',
 };
