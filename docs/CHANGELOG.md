@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/cycjimmy/canvas-snow/compare/v3.0.0...v3.0.1) (2022-03-26)
+
+
+### Bug Fixes
+
+* fix root version after releasing ([980044d](https://github.com/cycjimmy/canvas-snow/commit/980044d3de557fcf677e3f41c8a308f17cc33d02))
+
 # [3.0.0](https://github.com/cycjimmy/canvas-snow/compare/v2.0.0...v3.0.0) (2022-03-26)
 
 
