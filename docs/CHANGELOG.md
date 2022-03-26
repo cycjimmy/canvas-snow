@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/cycjimmy/canvas-snow/compare/v2.0.0...v3.0.0) (2022-03-26)
+
+
+### Features
+
+* refactoring build tasks ([6469d23](https://github.com/cycjimmy/canvas-snow/commit/6469d230c939230cf268007ab77a3fb64f094a60))
+
+
+### BREAKING CHANGES
+
+* refactoring build tasks
+
 # [2.0.0](https://github.com/cycjimmy/canvas-snow/compare/v1.0.5...v2.0.0) (2022-03-22)
 
 
