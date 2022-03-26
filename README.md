@@ -66,7 +66,7 @@ canvasSnow.start();
 
 To use via a CDN include this in your HTML:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/@cycjimmy/canvas-snow@2/dist/canvas-snow.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@cycjimmy/canvas-snow@3/dist/canvas-snow.umd.min.js"></script>
 ```
 
 <!-- Links: -->
