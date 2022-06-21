@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/canvas-snow",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Generates snow in canvas.",
   "type": "module",
   "main": "dist/canvas-snow.cjs",
