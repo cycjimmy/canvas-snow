@@ -51,7 +51,7 @@
     "@cycjimmy/config-lib": "^3.2.1",
     "@jest/globals": "^29.0.1",
     "@rollup/plugin-babel": "^6.0.0",
-    "@rollup/plugin-eslint": "^8.0.2",
+    "@rollup/plugin-eslint": "^9.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^14.0.1",
     "autoprefixer": "^10.4.7",
