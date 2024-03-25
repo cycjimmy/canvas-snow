@@ -58,7 +58,7 @@
       this.canvasW = canvasW;
       this.canvasH = canvasH;
     }
-    _createClass(_default, [{
+    return _createClass(_default, [{
       key: "update",
       value: function update() {
         if (this.y > this.canvasH) {
@@ -81,7 +81,6 @@
         insideCxt.fillRect(this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
       }
     }]);
-    return _default;
   }();
 
   var _default$1 = /*#__PURE__*/function () {
@@ -89,7 +88,7 @@
       _classCallCheck(this, _default);
       this.list = [];
     }
-    _createClass(_default, [{
+    return _createClass(_default, [{
       key: "update",
       value: function update() {
         for (var i = 0, len = this.size(); i < len; i += 1) {
@@ -119,7 +118,6 @@
         return this.list.length;
       }
     }]);
-    return _default;
   }();
 
   /**
@@ -200,7 +198,7 @@
       this.cxt = null;
       this.interval = null;
     }
-    _createClass(_default, [{
+    return _createClass(_default, [{
       key: "init",
       value: function init() {
         if (!this.canvas) {
@@ -315,7 +313,6 @@
         return ret;
       }
     }]);
-    return _default;
   }();
 
   return _default;
