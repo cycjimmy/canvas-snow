@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/cycjimmy/canvas-snow/compare/v3.0.2...v3.0.3) (2024-07-16)
+
+
+### Bug Fixes
+
+* upgrade deps ([5a3af61](https://github.com/cycjimmy/canvas-snow/commit/5a3af61e65eeed0dbcb188545b2157379b150c21))
+
 ## [3.0.2](https://github.com/cycjimmy/canvas-snow/compare/v3.0.1...v3.0.2) (2022-06-21)
 
 
