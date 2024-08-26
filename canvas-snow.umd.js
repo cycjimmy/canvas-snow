@@ -38,7 +38,7 @@
    * @param str
    * @returns {boolean}
    */
-  var isString = (str => typeof str === 'string' && str.constructor === String);
+  var isString = str => typeof str === 'string' && str.constructor === String;
 
   var _default$2 = /*#__PURE__*/function () {
     function _default(x, y, radius, fn, canvasW, canvasH) {
