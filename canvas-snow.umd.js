@@ -21,7 +21,7 @@
   function _toPrimitive(t, r) {
     if ("object" != typeof t || !t) return t;
     var e = t[Symbol.toPrimitive];
-    if (undefined !== e) {
+    if (void 0 !== e) {
       var i = e.call(t, r);
       if ("object" != typeof i) return i;
       throw new TypeError("@@toPrimitive must return a primitive value.");
@@ -134,7 +134,7 @@
   var getTotalDistance = function getTotalDistance(_ref) {
     var el = _ref.el,
       _ref$tip = _ref.tip,
-      tip = _ref$tip === undefined ? 'horizontal' : _ref$tip;
+      tip = _ref$tip === void 0 ? 'horizontal' : _ref$tip;
     switch (tip) {
       case 'horizontal':
         return el.getBoundingClientRect().width;
@@ -175,9 +175,9 @@
     function _default(_ref) {
       var context = _ref.context,
         _ref$width = _ref.width,
-        width = _ref$width === undefined ? '100%' : _ref$width,
+        width = _ref$width === void 0 ? '100%' : _ref$width,
         _ref$height = _ref.height,
-        height = _ref$height === undefined ? '100%' : _ref$height,
+        height = _ref$height === void 0 ? '100%' : _ref$height,
         cell = _ref.cell;
       _classCallCheck(this, _default);
       this.context = isString(context) ? document.querySelector(context) : context;
