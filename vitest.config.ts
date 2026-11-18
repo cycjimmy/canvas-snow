@@ -15,11 +15,14 @@ export default defineConfig({
       reportsDirectory: 'coverage',
       include: ['src/**/*.ts'],
       exclude: ['src/types/**'],
+      // The suite covers every statement and branch of `src/`, so the gate sits
+      // at 90% instead of 100%: a new defensive branch should not turn CI red
+      // while it is still being written, but a real regression still fails.
       thresholds: {
-        branches: 50,
-        functions: 50,
-        lines: 50,
-        statements: 50,
+        branches: 90,
+        functions: 90,
+        lines: 90,
+        statements: 90,
       },
     },
   },

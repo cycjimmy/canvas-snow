@@ -16,7 +16,7 @@ $ npm run type-check   # tsc --noEmit over src, __test__, __mocks__, tasks and t
 $ npm run lint         # ESLint (flat config, @antfu/eslint-config)
 $ npm run lint:style   # Stylelint for src/**/*.{css,scss}
 $ npm test             # Vitest
-$ npm run test:coverage # Vitest with V8 coverage (coverage/lcov.info for Coveralls)
+$ npm run test:coverage # Vitest with V8 coverage (coverage/lcov.info for Coveralls, 90% gate)
 $ npm run package      # build dist/ and assemble .release/
 ```
 
