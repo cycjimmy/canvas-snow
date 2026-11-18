@@ -1,3 +1,18 @@
+# [4.0.0](https://github.com/cycjimmy/canvas-snow/compare/v3.0.3...v4.0.0) (2026-11-18)
+
+
+* feat!: migrate to an esm-only typescript build ([1066166](https://github.com/cycjimmy/canvas-snow/commit/106616616331df5135fbcfac7e0758e075904c7b))
+
+
+### BREAKING CHANGES
+
+* the CommonJS bundle (dist/canvas-snow.cjs) and the `require`
+export condition are gone; main, module and the default export condition now
+resolve to dist/canvas-snow.esm.js, so CommonJS consumers have to use
+`await import()`. Every output targets ES2015, which drops IE support, and the
+package now requires Node.js ^22.18.0 || >=24.11.0. The internal
+_initCanvas/_newSnow/_getRandom members became private implementation details.
+
 ## [3.0.3](https://github.com/cycjimmy/canvas-snow/compare/v3.0.2...v3.0.3) (2024-07-16)
 
 
