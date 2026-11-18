@@ -74,6 +74,9 @@ export default class CanvasSnow {
     }
 
     const { cxt, canvas, snowList } = this
+    // `init()` above guarantees all three, so this only guards against a manual
+    // field reset; it cannot be reached through the public API.
+    /* v8 ignore next 3 */
     if (!cxt || !canvas || !snowList) {
       throw new Error('CanvasSnow must be initialized before it can start.')
     }
@@ -130,6 +133,9 @@ export default class CanvasSnow {
 
   private newSnow(): void {
     const { snowList, cxt } = this
+    // Both fields are assigned right before this call, so the guard cannot be
+    // reached through the public API.
+    /* v8 ignore next 3 */
     if (!snowList || !cxt) {
       throw new Error('CanvasSnow must be initialized before snow can be generated.')
     }
@@ -150,38 +156,28 @@ export default class CanvasSnow {
   }
 
   /**
-   * Generate random x-pos, y-pos or fn functions
-   * @param option x|y|r|fnx|fny
+   * Generate a random x-position, y-position, radius or motion function.
+   * The parameter type is the union of every call site, so the switch is
+   * exhaustive and nothing else can be passed in.
    */
   private getRandom(option: 'x' | 'y' | 'r'): number
   private getRandom(option: 'fnx' | 'fny'): SnowMotion['x']
-  private getRandom(option: string): number | SnowMotion['x'] | undefined
-  private getRandom(option: string): number | SnowMotion['x'] | undefined {
-    let ret: number | SnowMotion['x'] | undefined
-    let random: number
-
+  private getRandom(option: 'x' | 'y' | 'r' | 'fnx' | 'fny'): number | SnowMotion['x'] {
     switch (option) {
       case 'x':
-        ret = Math.random() * this.width
-        break
+        return Math.random() * this.width
       case 'y':
-        ret = (Math.random() - 1) * this.height
-        break
+        return (Math.random() - 1) * this.height
       case 'r':
-        ret = 2 + (Math.random() * 4)
-        break
-      case 'fnx':
-        random = 27 + Math.random() * 100
-        ret = (x, y) => x + 0.5 * Math.sin(y / random)
-        break
-
-      case 'fny':
-        random = 0.4 + Math.random() * 1.4
-        ret = (_x, y) => y + random
-        break
-      default:
+        return 2 + (Math.random() * 4)
+      case 'fnx': {
+        const random = 27 + Math.random() * 100
+        return (x, y) => x + 0.5 * Math.sin(y / random)
+      }
+      case 'fny': {
+        const random = 0.4 + Math.random() * 1.4
+        return (_x, y) => y + random
+      }
     }
-
-    return ret
   }
 }
