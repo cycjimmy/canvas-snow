@@ -154,4 +154,52 @@ describe('canvasSnow', () => {
     expect(canvasSnow.interval).toBeNull()
     expect(canvasSnow.snowList).toBeNull()
   })
+
+  it('regenerates the flakes when it is started again after clear()', () => {
+    vi.useFakeTimers()
+    const canvasSnow = new CanvasSnow({ context: wrapper, cell: 2 }).init()
+    const canvas = canvasSnow.canvas
+
+    canvasSnow.start()
+    canvasSnow.clear()
+    expect(canvasSnow.snowList).toBeNull()
+
+    canvasSnow.start()
+
+    expect(canvasSnow.snowList?.size()).toBe(2)
+    // The existing canvas is reused instead of appending a second one.
+    expect(canvasSnow.canvas).toBe(canvas)
+    expect(wrapper.querySelectorAll('canvas')).toHaveLength(1)
+
+    canvasSnow.stop()
+  })
+
+  it('accepts numeric strings for the size', () => {
+    const canvasSnow = new CanvasSnow({
+      context: wrapper,
+      width: '360',
+      height: '120',
+      cell: 1,
+    })
+
+    expect(canvasSnow.width).toBe(360)
+    expect(canvasSnow.height).toBe(120)
+  })
+
+  it('refuses to stop before it is initialized', () => {
+    const canvasSnow = new CanvasSnow({ context: wrapper, cell: 1 })
+
+    expect(() => canvasSnow.stop()).toThrow(/initialized before it can stop/)
+    expect(canvasSnow.state).toBe('stop')
+    expect(canvasSnow.interval).toBeNull()
+  })
+
+  it('reports a missing 2D context instead of drawing into null', () => {
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext')
+      .mockReturnValue(null as unknown as CanvasRenderingContext2D)
+    const canvasSnow = new CanvasSnow({ context: wrapper, cell: 1 })
+
+    expect(() => canvasSnow.init()).toThrow(/could not acquire a 2D canvas context/)
+    expect(canvasSnow.cxt).toBeNull()
+  })
 })
