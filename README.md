@@ -1,13 +1,11 @@
 # Canvas Snow
 
-![][workflows-badge-image]
-[![libraries dependency status][libraries-status-image]][libraries-status-url]
-[![libraries sourcerank][libraries-sourcerank-image]][libraries-sourcerank-url]
+[![Test CI][workflows-badge-image]][workflows-url]
 [![Coverage Status][coverage-image]][coverage-url]
 [![Release date][release-date-image]][release-url]
-[![rollup][rollup-image]][rollup-url]
+[![vite][vite-image]][vite-url]
+[![vitest][vitest-image]][vitest-url]
 [![semantic-release][semantic-image]][semantic-url]
-[![jest][jest-image]][jest-url]
 [![npm license][license-image]][download-url]
 
 * Generates snow in canvas. ([Demo][github-pages-url])
@@ -25,14 +23,17 @@ $ npm install @cycjimmy/canvas-snow --save
 $ yarn add @cycjimmy/canvas-snow
 ```
 
+The package is ESM only and ships its own type declarations, so it works with a
+bundler or a native `import` without any extra setup.
+
 ## Usage
 ```javascript
-import CanvasSnow from '@cycjimmy/canvas-snow';
+import CanvasSnow from '@cycjimmy/canvas-snow'
 
 const canvasSnow = new CanvasSnow({
   ...options
-}).init();
-canvasSnow.start();
+}).init()
+canvasSnow.start()
 ```
 
 * `options`
@@ -49,15 +50,15 @@ canvasSnow.start();
 
 ### Use in browser
 ```html
-<div id="snowWrapper"></div>
+<div class="snow-wrapper"></div>
 <script src="canvas-snow.umd.min.js"></script>
 <script>
-  const canvasSnow = new CanvasSnow(source, {
-    context: '#snowWrapper',
-    [...options]
-  }).init();
+  const canvasSnow = new CanvasSnow({
+    context: '.snow-wrapper',
+    cell: 30
+  }).init()
 
-  canvasSnow.start();
+  canvasSnow.start()
 </script>
 ```
 
@@ -66,8 +67,55 @@ canvasSnow.start();
 
 To use via a CDN include this in your HTML:
 ```text
-<script src="https://cdn.jsdelivr.net/npm/@cycjimmy/canvas-snow@3/dist/canvas-snow.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@cycjimmy/canvas-snow@4/dist/canvas-snow.umd.min.js"></script>
 ```
+
+## Migration to v4
+
+Version 4 replaces the whole build toolchain (rollup/babel/jest → vite/vitest/typescript)
+and drops the CommonJS bundle. Consumers upgrading from v3 need to know about
+the following changes.
+
+### No CommonJS bundle
+
+`dist/canvas-snow.cjs` is gone, and the `require` condition was removed from
+`exports`. Use `import` from ESM code:
+
+```javascript
+import CanvasSnow from '@cycjimmy/canvas-snow'
+```
+
+A CommonJS file can still load the package through dynamic `import()`, which
+resolves to the module namespace, so the constructor is on `.default`:
+
+```javascript
+const { default: CanvasSnow } = await import('@cycjimmy/canvas-snow')
+```
+
+### Bundle and browser support
+
+* `main`, `module` and the `default` export condition all point at
+  `dist/canvas-snow.esm.js`. The UMD builds (`canvas-snow.umd.js` and
+  `canvas-snow.umd.min.js`) are unchanged for `<script>` tags and CDNs.
+* Every output targets ES2015, which drops the IE support the old babel build
+  still provided.
+* Type declarations are published for the first time (`dist/index.d.ts`).
+* The runtime dependency `@cycjimmy/awesome-js-funcs` moved to v5 and is bundled
+  into the output, so nothing extra is installed.
+
+### Unchanged behaviour
+
+The public API, the UMD global name (`CanvasSnow`), the three bundle file names
+and the animation itself (13ms frame interval, sizing rules, drawing) are
+identical to v3.
+
+The only visible surface reduction is that `_initCanvas`, `_newSnow` and
+`_getRandom` became private implementation details; they were never documented
+and should not be called from the outside.
+
+### Requirements
+
+Node.js `^22.18.0 || >=24.11.0` for development and for the release tooling.
 
 <!-- Links: -->
 [npm-image]: https://img.shields.io/npm/v/@cycjimmy/canvas-snow
@@ -81,11 +129,7 @@ To use via a CDN include this in your HTML:
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/@cycjimmy/canvas-snow
 
 [workflows-badge-image]: https://github.com/cycjimmy/canvas-snow/workflows/Test%20CI/badge.svg
-
-[libraries-status-image]: https://img.shields.io/librariesio/release/npm/@cycjimmy/canvas-snow
-[libraries-sourcerank-image]: https://img.shields.io/librariesio/sourcerank/npm/@cycjimmy/canvas-snow
-[libraries-status-url]: https://libraries.io/github/cycjimmy/canvas-snow
-[libraries-sourcerank-url]: https://libraries.io/npm/@cycjimmy%2Fcanvas-snow
+[workflows-url]: https://github.com/cycjimmy/canvas-snow/actions/workflows/nodeTestCI.yml
 
 [coverage-image]: https://img.shields.io/coveralls/github/cycjimmy/canvas-snow
 [coverage-url]: https://coveralls.io/github/cycjimmy/canvas-snow
@@ -93,14 +137,14 @@ To use via a CDN include this in your HTML:
 [release-date-image]: https://img.shields.io/github/release-date/cycjimmy/canvas-snow
 [release-url]: https://github.com/cycjimmy/canvas-snow/releases
 
-[rollup-image]: https://img.shields.io/github/package-json/dependency-version/cycjimmy/canvas-snow/dev/rollup
-[rollup-url]: https://github.com/rollup/rollup
+[vite-image]: https://img.shields.io/badge/bundled_with-vite-646cff
+[vite-url]: https://vite.dev
+
+[vitest-image]: https://img.shields.io/badge/tested_with-vitest-6e9f18
+[vitest-url]: https://vitest.dev
 
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
-
-[jest-image]: https://img.shields.io/badge/tested_with-jest-99424f.svg
-[jest-url]: https://github.com/facebook/jest
 
 [license-image]: https://img.shields.io/npm/l/@cycjimmy/canvas-snow
 

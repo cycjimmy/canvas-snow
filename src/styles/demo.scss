@@ -1,0 +1,12 @@
+// Only the demo page imports this stylesheet: the library entry deliberately
+// avoids it, so consumers never receive the demo reset or the wrapper sizing.
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.snow-wrapper {
+  width: 100%;
+  height: 300px;
+  background-color: #132456;
+}

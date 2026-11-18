@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    // `isolatedDeclarations` is deliberately off: it rejects the default-exported
+    // class, and an annotated-const workaround renames the bundle identifiers.
+    // The public shape is pinned by `src/index.ts` instead.
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}
