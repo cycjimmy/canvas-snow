@@ -67,7 +67,11 @@ survive the JS builds.
 `npm run build:deployment` builds `static/index.html` as a regular Vite app into
 `.publish/` (`base: './'` so it works under the repository subpath). The
 `Deploy To GitHub Pages` workflow uploads `.publish` as a Pages artifact and
-publishes it with `actions/deploy-pages`.
+publishes it with `actions/deploy-pages`. Three steps guard that handover: the
+artifact of an earlier attempt is deleted first (`deploy-pages` refuses to pick
+between two artifacts of the same name), the new artifact is polled for before
+the deploy runs (the action has been seen looking it up before the upload was
+visible), and a failed deploy is retried once.
 
 ## Repository settings required by the deployment
 

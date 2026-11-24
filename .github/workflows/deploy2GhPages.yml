@@ -17,9 +17,11 @@ on:
 # prove it was started by this workflow. No token of any kind is stored: the
 # site is uploaded as an artifact and published by `actions/deploy-pages`
 # instead of being pushed to the `gh-pages` branch, so the build is a run of
-# this workflow rather than a side effect of a branch push.
+# this workflow rather than a side effect of a branch push. `actions: write`
+# lets the cleanup step below delete the artifact of an earlier attempt.
 permissions:
   contents: read
+  actions: write
   pages: write
   id-token: write
 
@@ -34,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -53,11 +55,60 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
+      # A rerun uploads under the same name again, and `deploy-pages` refuses to
+      # pick between two artifacts named `github-pages`: it fails with `Multiple
+      # artifacts ... were unexpectedly found`. Clear what an earlier attempt left
+      # behind so the lookup below always sees exactly one. On a first attempt
+      # there is nothing to delete.
+      - name: Drop the artifact of an earlier attempt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          artifacts="repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/artifacts"
+          for id in $(gh api --paginate "${artifacts}?name=github-pages" --jq '.artifacts[].id'); do
+            echo "Deleting artifact ${id}."
+            gh api -X DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}" >/dev/null
+          done
+
       - name: Upload the build output
         uses: actions/upload-pages-artifact@v5
         with:
           path: .publish
 
+      # `deploy-pages` lists this run's artifacts as soon as the upload step ends
+      # and has been seen answering `Found 0 artifact(s)` a second later, although
+      # the build and the upload had both succeeded: the new artifact was still
+      # propagating. Poll the REST listing until it shows up instead of sleeping
+      # for a guessed amount of time. That listing is served by a different service
+      # than the one the action reads, so the deploy step still retries once.
+      - name: Wait for the pages artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          for attempt in $(seq 1 20); do
+            total=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/artifacts?name=github-pages" --jq '.total_count')
+            if [ "$total" != "0" ]; then
+              echo "The github-pages artifact is listed."
+              exit 0
+            fi
+
+            echo "The github-pages artifact is not listed yet (attempt ${attempt}/20)"
+            sleep 3
+          done
+
+          echo "::error::The github-pages artifact never appeared in the listing."
+          exit 1
+
+      # A failed lookup leaves the uploaded artifact in place, so a second attempt
+      # a few seconds later is cheap and saves a manual rerun of the job.
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Deploy to GitHub Pages (retry)
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v5
