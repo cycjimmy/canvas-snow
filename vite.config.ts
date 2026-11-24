@@ -1,7 +1,7 @@
 import type { BuildOptions, TerserOptions } from 'vite'
 
-import myBanner from '@cycjimmy/config-lib/esm/chore/myBanner.js'
-import terserOption from '@cycjimmy/config-lib/esm/terser/4.x/production.js'
+import myBanner from '@cycjimmy/config-lib/dist/chore/myBanner.js'
+import terserOption from '@cycjimmy/config-lib/dist/terser/4.x/production.js'
 import autoprefixer from 'autoprefixer'
 import { defineConfig } from 'vite'
 
@@ -16,7 +16,8 @@ interface LibraryBuildOptions {
 
 // config-lib's shared option follows terser 4's legacy `output` key. Vite 8 always
 // injects `format` and terser rejects having both, so convert `output` → `format`.
-// The assertion is confined to this boundary because config-lib ships no types.
+// The assertion is confined to this boundary because the shared option still
+// carries terser 4 era keys (`warnings`, `ie8`) that terser 5 dropped.
 const { output, ...restTerserOption } = terserOption
 const terserOptions = { ...restTerserOption, format: output } as TerserOptions
 

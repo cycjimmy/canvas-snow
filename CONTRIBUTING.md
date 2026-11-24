@@ -45,8 +45,9 @@ touches it, so consumers do not receive the demo reset or the wrapper sizing.
   through cosmiconfig, whose TypeScript loader resolves `typescript` from
   semantic-release's own install tree (inside the action) rather than from this
   project.
-* `src/types/*.d.ts` holds the ambient declarations for `@cycjimmy/config-lib`
-  and `@cycjimmy/awesome-js-funcs`, which ship no types.
+* `src/types/*.d.ts` holds the ambient declaration for
+  `@cycjimmy/awesome-js-funcs`, which ships no types. `@cycjimmy/config-lib`
+  needs no shim: its v4 build publishes declarations alongside every entry.
 
 ## Build outputs
 
